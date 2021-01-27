@@ -13,7 +13,7 @@ namespace ADOPRChart
 {
     public class Options
     {
-        [Option('l', "file", Required = false, HelpText = "Load config from appsettings file", Default = true, SetName = "file")]
+        [Option('l', "file", Required = false, HelpText = "Load config from appsettings file. Make sure there is an appsettings.json file available.", Default = true, SetName = "file")]
         public bool LoadFromFile { get; set; }
 
         [Option('o', "ado-org", Required = false, HelpText = "ADO Organization (string)", SetName = "manual")]
