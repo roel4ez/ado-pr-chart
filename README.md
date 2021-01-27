@@ -15,7 +15,11 @@ Use the command line to pass the following arguments:
 - (optional) `--pr-status`: the status of the requested PR [completed, active, abandoned, any]
 - (optional) `--page-size`: the number of items you wish to receive (REST API defaults to 100)
 
-or create an `appsettings.json` file based on the template and use the `-f` flag to run.
+or create an `appsettings.json` file based on the template and use the `-f` flag to run
+
+```
+	ado-pr-chart.exe -f 
+```
 
 ### How to find the project UUID
 
@@ -27,3 +31,4 @@ or create an `appsettings.json` file based on the template and use the `-f` flag
 - [ ] make colors customizable
 - [ ] provide ability to choose fonts, colors and size
 - [ ] decent error handling
+- [ ] show help output when wrong arguments are provided
