@@ -2,7 +2,7 @@
 
 Quickly generate a PR chart for your ADO repositories, grouped per month.
 
-![chart](README.png)
+![chart](readme.png)
 
 ## Usage
 
