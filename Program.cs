@@ -13,7 +13,7 @@ namespace ADOPRChart
 {
     public class Options
     {
-        [Option('l', "file", Required = false, HelpText = "Load config from appsettings file. Make sure there is an appsettings.json file available.", Default = true, SetName = "file")]
+        [Option('f', "file", Required = false, HelpText = "Load config from appsettings file. Make sure there is an appsettings.json file available.", Default = false, SetName = "file")]
         public bool LoadFromFile { get; set; }
 
         [Option('o', "ado-org", Required = false, HelpText = "ADO Organization (string)", SetName = "manual")]
@@ -39,7 +39,7 @@ namespace ADOPRChart
     {
         public static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");  
+            Console.WriteLine("ado-pr-chart");  
             var parser= new Parser();
             var result = parser.ParseArguments<Options>(args);
 
@@ -59,7 +59,7 @@ namespace ADOPRChart
                          var response = await DoCall(x);
 
                          DoParse(response);
-                     }, errors => Task.FromResult(0));
+                     }, errors => Task.FromResult(0)); //todo: make sure this show the help instead
         }
 
         private static Task<string> DoCall(Options o)
