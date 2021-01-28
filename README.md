@@ -12,6 +12,7 @@ Use the command line to pass the following arguments:
 - `--ado-proj` the name of the Project in ADO
 - `--ado-repo` the UUID of the Repository in ADO
 - `--ado-pat`: a PAT for ADO with scope vso.code
+- `--start-date`: the date from when to start counting. Format=yyyyMMdd
 - (optional) `--pr-status`: the status of the requested PR [completed, active, abandoned, any]
 - (optional) `--page-size`: the number of items you wish to receive (REST API defaults to 100)
 
@@ -32,3 +33,4 @@ or create an `appsettings.json` file based on the template and use the `-f` flag
 - [ ] provide ability to choose fonts, colors and size
 - [ ] decent error handling
 - [ ] show help output when wrong arguments are provided
+- [x] Fix hardcoded date
