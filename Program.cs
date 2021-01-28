@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -28,6 +29,9 @@ namespace ADOPRChart
         [Option('a', "ado-pat", Required = false, HelpText = "ADO Private Access Token (will not be stored)", SetName = "manual")]
         public string AdoAccessToken { get; set; }
 
+        [Option('d', "start-date", Required = false, HelpText = "From when to start counting (format=yyyymmdd)", Default = "20201111")]
+        public string StartDate { get; set; }
+
         [Option('s', "pr-status", Required = false, HelpText = "Status of PR (default 'Completed')", SetName = "manual")]
         public string PullRequestStatus { get; set; }
 
@@ -37,6 +41,8 @@ namespace ADOPRChart
 
     public class Program
     {
+        private static DateTime startDate;
+
         public static async Task Main(string[] args)
         {
             Console.WriteLine("ado-pr-chart");  
@@ -54,6 +60,9 @@ namespace ADOPRChart
                              x.AdoAccessToken = (string)file.SelectToken("ado-pat");
                              x.PullRequestStatus = (string)file.SelectToken("pr-status");
                              x.PageSize = (int)file.SelectToken("page-size");
+                             
+                             var date = (string)file.SelectToken("start-date");
+                             startDate = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
                          }
 
                          var response = await DoCall(x);
@@ -85,7 +94,7 @@ namespace ADOPRChart
 
             var allPrDates = o.SelectToken("value")
                             .Select(p => DateTime.Parse((string)p.SelectToken("closedDate")))
-                            .Where(d => d > new DateTime(2020,11,11))
+                            .Where(d => d >= startDate)
                             .OrderBy(d => d);
             var total = allPrDates.Count();
 
